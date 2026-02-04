@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void roundRobin(vector<Process> p, int quantum) {
+AlgoStats roundRobin(vector<Process> p, int quantum) {
     cout << "\n=== Round Robin (Q = " << quantum << ") ===\n";
 
     sort(p.begin(), p.end(), [](auto& a, auto& b) {
@@ -17,6 +17,7 @@ void roundRobin(vector<Process> p, int quantum) {
     vector<bool> inQueue(p.size(), false);
 
     int time = 0;
+
     q.push(0);
     inQueue[0] = true;
 
@@ -27,6 +28,7 @@ void roundRobin(vector<Process> p, int quantum) {
         q.pop();
 
         int exec = min(quantum, p[i].remaining);
+
         cout << "| " << p[i].pid << " ";
 
         p[i].remaining -= exec;
@@ -49,5 +51,7 @@ void roundRobin(vector<Process> p, int quantum) {
     }
 
     cout << "|\n";
+
     printMetrics(p);
+    return computeAverages("Round Robin", p);
 }

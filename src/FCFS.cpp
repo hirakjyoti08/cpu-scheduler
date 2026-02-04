@@ -5,7 +5,7 @@
 
 using namespace std;
 
-void fcfs(vector<Process> p) {
+AlgoStats fcfs(vector<Process> p) {
     cout << "\n=== FCFS ===\n";
 
     sort(p.begin(), p.end(), [](auto& a, auto& b) {
@@ -20,6 +20,7 @@ void fcfs(vector<Process> p) {
             time = proc.arrival;
 
         cout << "| " << proc.pid << " ";
+
         time += proc.burst;
 
         proc.completion = time;
@@ -28,6 +29,7 @@ void fcfs(vector<Process> p) {
     }
 
     cout << "|\n";
-    printMetrics(p);
 
+    printMetrics(p);
+    return computeAverages("FCFS", p);
 }

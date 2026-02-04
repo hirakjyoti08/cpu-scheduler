@@ -25,3 +25,17 @@ void printMetrics(const vector<Process>& p) {
     cout << "\nAverage Waiting Time: " << totalWT / p.size();
     cout << "\nAverage Turnaround Time: " << totalTAT / p.size() << "\n";
 }
+
+AlgoStats computeAverages(const string& algoName,
+                          const vector<Process>& p) {
+    double totalWT = 0, totalTAT = 0;
+
+    for (const auto& proc : p) {
+        totalWT += proc.waiting;
+        totalTAT += proc.turnaround;
+    }
+
+    return {algoName,
+            totalWT / p.size(),
+            totalTAT / p.size()};
+}

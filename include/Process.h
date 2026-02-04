@@ -8,6 +8,7 @@ struct Process {
     int arrival;
     int burst;
     int remaining;
+
     int completion = 0;
     int waiting = 0;
     int turnaround = 0;

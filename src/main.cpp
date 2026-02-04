@@ -1,5 +1,6 @@
 #include <vector>
 #include "Scheduler.h"
+#include "Summary.h"
 
 using namespace std;
 
@@ -11,9 +12,13 @@ int main() {
         {"P4", 3, 2, 2}
     };
 
-    fcfs(processes);
-    sjfNonPreemptive(processes);
-    roundRobin(processes, 2);
+    vector<AlgoStats> summary;
+
+    summary.push_back(fcfs(processes));
+    summary.push_back(sjfNonPreemptive(processes));
+    summary.push_back(roundRobin(processes, 2));
+
+    printSummary(summary);
 
     return 0;
 }

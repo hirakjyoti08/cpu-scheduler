@@ -5,11 +5,12 @@
 
 using namespace std;
 
-void sjfNonPreemptive(vector<Process> p) {
+AlgoStats sjfNonPreemptive(vector<Process> p) {
     cout << "\n=== SJF (Non-Preemptive) ===\n";
 
     int n = p.size();
     int time = 0, completed = 0;
+
     vector<bool> done(n, false);
 
     cout << "Gantt Chart: ";
@@ -31,6 +32,7 @@ void sjfNonPreemptive(vector<Process> p) {
         }
 
         cout << "| " << p[idx].pid << " ";
+
         time += p[idx].burst;
 
         p[idx].completion = time;
@@ -42,6 +44,7 @@ void sjfNonPreemptive(vector<Process> p) {
     }
 
     cout << "|\n";
-    printMetrics(p);
 
+    printMetrics(p);
+    return computeAverages("SJF (NP)", p);
 }

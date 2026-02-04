@@ -3,9 +3,10 @@
 
 #include <vector>
 #include "Process.h"
+#include "Summary.h"
 
-void fcfs(std::vector<Process> processes);
-void sjfNonPreemptive(std::vector<Process> processes);
-void roundRobin(std::vector<Process> processes, int quantum);
+AlgoStats fcfs(std::vector<Process> processes);
+AlgoStats sjfNonPreemptive(std::vector<Process> processes);
+AlgoStats roundRobin(std::vector<Process> processes, int quantum);
 
 #endif
