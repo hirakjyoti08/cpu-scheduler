@@ -33,3 +33,5 @@ AlgoStats fcfs(vector<Process> p) {
     printMetrics(p);
     return computeAverages("FCFS", p);
 }
+
+// g++ -Iinclude src/*.cpp -o src/main./src/main

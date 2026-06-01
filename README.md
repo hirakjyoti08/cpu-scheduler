@@ -1,30 +1,27 @@
 # Process Scheduling Evaluation Toolkit
 
-A modular and extensible **CPU Scheduling Simulator** implemented in C++. This project demonstrates and compares different CPU scheduling algorithms used in operating systems, along with detailed performance metrics.
+A modular and extensible **Distributed CPU Scheduling Simulator** implemented in C++. This project demonstrates and compares different CPU scheduling algorithms used in operating systems, scaled across a Master-Worker network architecture via TCP sockets.
 
 ---
 
 ## Overview
 
-CPU scheduling is a core concept in operating systems that determines how processes are allocated CPU time. This project provides a structured implementation of multiple scheduling algorithms with a clean separation of concerns using headers and source files.
+CPU scheduling is a core concept in operating systems that determines how processes are allocated CPU time. This project provides a structured implementation of multiple scheduling algorithms with a clean separation of concerns using headers and source files, and distributes the workload over a network.
 
 It is designed for:
-- 🎓 Academic learning (OS concepts)
+- 🎓 Academic learning (OS and Networking concepts)
 - 💼 Interview preparation
-- 🧪 Algorithm comparison and experimentation
+- 🧪 Algorithm comparison and experimentation in distributed environments
 
 ---
 
 ## Features
 
 - ✅ Modular C++ design using header (`include/`) and source (`src/`) separation  
-- 📊 Computes key scheduling metrics:
-  - Waiting Time  
-  - Turnaround Time  
-  - Completion Time  
-- ⚙️ Supports multiple scheduling algorithms  
-- 📈 Clean output summarization  
-- 💻 Command-line based execution  
+- 🌐 Distributed Master-Worker architecture using POSIX TCP Sockets
+- 📊 Computes key scheduling metrics: Waiting Time, Turnaround Time, Completion Time
+- ⚙️ Supports multiple scheduling algorithms (FCFS, SJF, Round Robin)
+- 📈 Clean output summarization
 
 ---
 
@@ -40,38 +37,39 @@ It is designed for:
 
 - **Language:** C++  
 - **Concepts:**
-  - Object-Oriented Programming (OOP)
-  - Operating Systems
-  - Process Scheduling
+  - Operating Systems & Process Scheduling
+  - Computer Networks (TCP/IP Sockets)
+  - Distributed Systems (Master-Worker pattern)
   - Modular Design
 
 ---
 
 ## 📂 Project Structure
 ```bash
-
-├── .vscode
-├── include
+├── Makefile
+├── include/
+│   ├── NetworkUtils.h
 │   ├── Metrics.h
 │   ├── Process.h
 │   ├── Scheduler.h
 │   └── Summary.h
-├── src
+├── src/
+│   ├── master.cpp
+│   ├── worker.cpp
+│   ├── NetworkUtils.cpp
 │   ├── FCFS.cpp
 │   ├── Metrics.cpp
 │   ├── RoundRobin.cpp
 │   ├── SJF.cpp
-│   ├── Summary.cpp
-│   └── main.cpp
-├── README.md
-└── scheduler.exe
+│   └── Summary.cpp
+└── README.md
 ```
-
 
 ## ⚙️ How to Run
 
 ### 🔧 Prerequisites
 - GCC / G++ compiler installed
+- GNU Make
 
 ### ▶️ Steps
 
@@ -83,7 +81,16 @@ git clone https://github.com/hirakjyoti08/cpu-scheduler.git
 cd cpu-scheduler
 
 # Compile the code
-g++ main.cpp -o scheduler
+make
 
-# Run the program
-./scheduler
+# Start the Master Node (waits for 2 workers on port 8080)
+# Run in Terminal 1
+./master_node 8080 2
+
+# Start the Worker Nodes
+# Run in Terminal 2
+./worker_node 127.0.0.1 8080
+
+# Run in Terminal 3
+./worker_node 127.0.0.1 8080
+```

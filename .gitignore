@@ -1,0 +1,8 @@
+# Compiled binaries
+master_node
+worker_node
+scheduler.exe
+src/main
+
+# macOS specific
+.DS_Store
